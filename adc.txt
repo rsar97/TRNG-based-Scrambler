@@ -1,0 +1,37 @@
+/*
+ * GccApplication4.c
+ *
+ * Created: 29-04-2020 11:07:18
+ * Author : Raghul Saravanan
+ */ 
+
+#include <avr/io.h>
+
+
+int main(void)
+
+
+
+{
+
+   ADCSRA=ADCSRA |(0b00000001<<ADEN);
+   ADCSRA=ADCSRA|(0b00000011);
+   ADMUX= ADMUX |(1<<REFS0);
+   
+   PORTA=0b00000000;
+   float a=2.5;
+   
+   PORTA=a; 
+   
+   int p=0b00000000;
+   ADMUX=ADMUX| p;
+   
+   ADCSRA=ADCSRA| 1<< ADSC;
+   
+   while((ADCSRA&(0b00000001<<ADIF))==0){
+   }
+   ADCSRA=ADCSRA|1<<ADIF;
+   return(ADC);
+   
+}
+
